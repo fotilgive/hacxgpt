@@ -194,7 +194,10 @@ class HacxProxyHandler(http.server.SimpleHTTPRequestHandler):
             messages[0]['content'] = SYSTEM_PROMPT
 
         # === Route to best available backend ===
-        if api_key:
+        if provider == 'pollinations':
+            # Always keyless for pollinations — it has no real API key
+            self._call_pollinations_get(messages)
+        elif api_key:
             # Route to correct provider base URL
             if provider == 'groq':
                 base_url = GROQ_BASE_URL
@@ -205,7 +208,7 @@ class HacxProxyHandler(http.server.SimpleHTTPRequestHandler):
                 base_url = cfg.get('base_url', 'https://api.openai.com/v1')
             self._call_openai_compat(messages, model, base_url, api_key)
         else:
-            # Keyless fallback: Pollinations GET
+            # No key at all — keyless pollinations fallback
             self._call_pollinations_get(messages)
 
     # ----------------------------------------------------------------
