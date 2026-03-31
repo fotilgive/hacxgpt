@@ -4,15 +4,11 @@
 
 // ---- Constants & Config ----
 const POLLINATIONS_MODELS = [
-    { id: 'openai',           name: 'OpenAI GPT-4o (Free)',       provider: 'pollinations' },
-    { id: 'claude-hybridspace',name: 'Claude Hybrid (Free)',      provider: 'pollinations' },
-    { id: 'mistral',          name: 'Mistral (Free)',              provider: 'pollinations' },
-    { id: 'deepseek-r1',      name: 'DeepSeek R1 (Free)',         provider: 'pollinations' },
-    { id: 'searchgpt',        name: 'SearchGPT (Free)',            provider: 'pollinations' },
-    { id: 'llama',            name: 'Llama 3.3 (Free)',            provider: 'pollinations' },
-    { id: 'qwen-coder',       name: 'Qwen 2.5 Coder (Free)',      provider: 'pollinations' },
-    { id: 'phi',              name: 'Phi-4 (Free)',                provider: 'pollinations' },
-    { id: 'evil',             name: 'Evil Mode (Free) 🔴',         provider: 'pollinations' },
+    { id: 'openai',      name: 'GPT-4o (Keyless)',          provider: 'pollinations' },
+    { id: 'openai-large',name: 'GPT-4o Large (Keyless)',    provider: 'pollinations' },
+    { id: 'llama',       name: 'Llama 3.3 (Keyless)',       provider: 'pollinations' },
+    { id: 'deepseek-r1', name: 'DeepSeek R1 (Keyless)',     provider: 'pollinations' },
+    { id: 'qwen-coder',  name: 'Qwen 2.5 Coder (Keyless)', provider: 'pollinations' },
 ];
 
 // Will be populated from /api/models
@@ -34,8 +30,8 @@ marked.setOptions({
 let chats = [];
 let currentChatId = null;
 let isLoading = false;
-let selectedModel = POLLINATIONS_MODELS[0].id;
-let selectedProvider = 'pollinations';
+let selectedModel = 'llama-3.3-70b-versatile';
+let selectedProvider = 'groq';
 let apiKey = '';
 
 // ---- DOM ----
