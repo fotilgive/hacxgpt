@@ -66,24 +66,32 @@ async function init() {
         switchChat(chats[0].id);
     }
 
-    // Load saved prefs
-    const savedModel = localStorage.getItem('hacx_model');
-    const savedProvider = localStorage.getItem('hacx_provider');
-    const savedKey = localStorage.getItem('hacx_apikey');
+    // ---- Version migration: force upgrade from old pollinations default → groq ----
+    const APP_VERSION = 'v3.1';
+    if (localStorage.getItem('hacx_version') !== APP_VERSION) {
+        // New deploy detected — reset provider/model to best defaults
+        localStorage.setItem('hacx_provider', 'groq');
+        localStorage.setItem('hacx_model', 'llama-3.3-70b-versatile');
+        localStorage.setItem('hacx_version', APP_VERSION);
+    }
 
-    if (savedProvider) {
-        selectedProvider = savedProvider;
-        if (elements.providerSelect) elements.providerSelect.value = savedProvider;
-        onProviderChange();
+    // Load saved prefs (now guaranteed to be up-to-date)
+    const savedModel    = localStorage.getItem('hacx_model')    || 'llama-3.3-70b-versatile';
+    const savedProvider = localStorage.getItem('hacx_provider') || 'groq';
+    const savedKey      = localStorage.getItem('hacx_apikey')   || '';
+
+    selectedProvider = savedProvider;
+    selectedModel    = savedModel;
+    if (elements.providerSelect) {
+        elements.providerSelect.value = savedProvider;
+        onProviderChange(); // rebuild model list for this provider
     }
-    if (savedModel) {
-        selectedModel = savedModel;
-        if (elements.modelSelect) elements.modelSelect.value = savedModel;
-    }
+    if (elements.modelSelect) elements.modelSelect.value = savedModel;
     if (savedKey) {
         apiKey = savedKey;
         if (elements.apiKeyInput) elements.apiKeyInput.value = savedKey;
     }
+
 
     // Event Listeners
     elements.promptInput.addEventListener('input', function() {
