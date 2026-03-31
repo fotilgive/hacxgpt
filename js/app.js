@@ -14,6 +14,29 @@ const POLLINATIONS_MODELS = [
 // Will be populated from /api/models
 let PROVIDER_MODELS = {};
 
+// Hardcoded fallback model lists — always available instantly
+const BUILTIN_PROVIDER_MODELS = {
+    groq: {
+        models: [
+            { name: 'llama-3.3-70b-versatile',      alias: '🔥 Llama 3.3 70B (Best)' },
+            { name: 'llama-3.1-8b-instant',          alias: '⚡ Llama 3.1 8B (Fast)' },
+            { name: 'deepseek-r1-distill-llama-70b', alias: '🔬 DeepSeek R1 70B' },
+            { name: 'mixtral-8x7b-32768',            alias: '🧠 Mixtral 8x7B' },
+            { name: 'gemma2-9b-it',                  alias: '💎 Gemma 2 9B' },
+        ]
+    },
+    openrouter: {
+        models: [
+            { name: 'meta-llama/llama-3.3-70b-instruct:free', alias: '🦙 Llama 3.3 70B (Free)' },
+            { name: 'mistralai/mistral-7b-instruct:free',      alias: '🌪 Mistral 7B (Free)' },
+            { name: 'deepseek/deepseek-r1:free',               alias: '🔬 DeepSeek R1 (Free)' },
+            { name: 'qwen/qwen3-235b-a22b:free',               alias: '🧠 Qwen3 235B (Free)' },
+            { name: 'google/gemini-2.0-flash-exp:free',        alias: '✨ Gemini Flash (Free)' },
+        ]
+    }
+};
+
+
 // Configure marked
 marked.setOptions({
     highlight: function(code, lang) {
@@ -180,12 +203,17 @@ function buildModelSelect(provider = 'pollinations') {
     elements.modelSelect.innerHTML = '';
 
     let modelList = [];
-    
+
     if (provider === 'pollinations') {
         modelList = POLLINATIONS_MODELS;
-    } else if (PROVIDER_MODELS[provider]) {
-        modelList = PROVIDER_MODELS[provider].models || [];
-        modelList = modelList.map(m => ({ id: m.name, name: m.alias || m.name, provider }));
+    } else {
+        // Try builtin first (always instant), then server-loaded
+        const src = BUILTIN_PROVIDER_MODELS[provider] || PROVIDER_MODELS[provider] || {};
+        modelList = (src.models || []).map(m => ({
+            id:       m.name,
+            name:     m.alias || m.name,
+            provider: provider
+        }));
     }
 
     modelList.forEach(m => {
@@ -200,6 +228,7 @@ function buildModelSelect(provider = 'pollinations') {
         elements.modelSelect.value = selectedModel;
     }
 }
+
 
 function onProviderChange() {
     const needsKey = selectedProvider !== 'pollinations';
