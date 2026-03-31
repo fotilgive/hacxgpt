@@ -90,7 +90,7 @@ async function init() {
     }
 
     // ---- Version migration: force upgrade from old pollinations default → groq ----
-    const APP_VERSION = 'v3.1';
+    const APP_VERSION = 'v3.2';
     if (localStorage.getItem('hacx_version') !== APP_VERSION) {
         // New deploy detected — reset provider/model to best defaults
         localStorage.setItem('hacx_provider', 'groq');
