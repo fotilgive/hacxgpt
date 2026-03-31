@@ -1,0 +1,7 @@
+.env
+__pycache__/
+*.pyc
+server.log
+*.log
+test_*.py
+har_and_cookies/

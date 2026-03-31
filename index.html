@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HacxGPT | Unrestricted Neural Link</title>
+    <meta name="description" content="HacxGPT — Uncensored AI. No limits. No filters. Total freedom.">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600;700&family=Inter:wght@400;500;700;900&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- Highlight JS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai-sublime.min.css">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- 3D Canvas background -->
+    <canvas id="bgCanvas"></canvas>
+
+    <!-- Layered overlays -->
+    <div class="scanlines"></div>
+    <div class="vignette"></div>
+    <div class="noise-overlay"></div>
+
+    <!-- Floating particles -->
+    <div class="particles" id="particles"></div>
+
+    <div class="app-layout">
+        <!-- ===== SIDEBAR ===== -->
+        <aside class="sidebar" id="sidebar">
+            <div class="brand">
+                <div class="brand-logo">
+                    <div class="logo-hex">
+                        <i class="fa-solid fa-microchip"></i>
+                    </div>
+                    <div class="logo-pulse"></div>
+                </div>
+                <div class="brand-text">
+                    <h1><span class="text-glow">HACX</span>GPT</h1>
+                    <span class="version">v3.0 UNBOUND</span>
+                </div>
+            </div>
+
+            <!-- Provider Select -->
+            <div class="control-group" id="providerGroup">
+                <label class="ctrl-label"><i class="fa-solid fa-server"></i> UPLINK</label>
+                <select id="providerSelect" class="ctrl-select">
+                    <option value="pollinations">⚡ Pollinations (Free)</option>
+                </select>
+            </div>
+
+            <!-- Model Select -->
+            <div class="control-group">
+                <label class="ctrl-label"><i class="fa-solid fa-brain"></i> MODEL</label>
+                <select id="modelSelect" class="ctrl-select"></select>
+            </div>
+
+            <!-- API Key (hidden for free providers) -->
+            <div class="control-group" id="apiKeyRow" style="display:none;">
+                <label class="ctrl-label"><i class="fa-solid fa-key"></i> API KEY</label>
+                <input type="password" id="apiKeyInput" class="ctrl-input" placeholder="sk-...">
+            </div>
+
+            <button id="newChatBtn" class="new-chat-btn">
+                <i class="fa-solid fa-plus"></i>
+                <span>NEW SESSION</span>
+                <div class="btn-glow"></div>
+            </button>
+
+            <div class="chat-list" id="chatList"></div>
+
+            <div class="sidebar-footer">
+                <div class="system-status">
+                    <div class="status-indicator online" id="statusDot"></div>
+                    <span class="status-text glow-red" id="statusText">SYSTEM: UNBOUND</span>
+                </div>
+                <div class="footer-build">[ BlackTechX · No Limits ]</div>
+            </div>
+        </aside>
+
+        <!-- ===== MAIN WORKSPACE ===== -->
+        <div class="terminal-container">
+            <header class="terminal-header">
+                <button id="toggleSidebarBtn" class="mobile-only icon-btn">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <div class="header-center">
+                    <div class="header-tag">NEURAL LINK</div>
+                    <div class="current-chat-title" id="currentChatTitle">ESTABLISHED</div>
+                </div>
+                <button id="deleteChatBtn" class="icon-btn danger-hover" title="Wipe session">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+            </header>
+
+            <main class="chat-viewport" id="chatViewport"></main>
+
+            <footer class="input-section">
+                <div class="input-box" id="inputBox">
+                    <textarea id="promptInput" rows="1" placeholder="Enter command… (Enter → send, Alt+Enter → newline)"></textarea>
+                    <button id="sendBtn" class="send-btn">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        <span class="desktop-only">EXECUTE</span>
+                        <div class="send-ripple"></div>
+                    </button>
+                </div>
+                <div class="footer-note">
+                    <span>[ Encrypted Proxy ]</span>
+                    <span class="proxy-info">No API Key Required · Fully Uncensored</span>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.3/purify.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

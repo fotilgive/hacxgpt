@@ -1,0 +1,38 @@
+{
+    "groq": {
+        "base_url": "https://api.groq.com/openai/v1",
+        "label": "⚡ Groq — FREE Llama 70B",
+        "free_key_url": "https://console.groq.com",
+        "models": [
+            { "name": "llama-3.3-70b-versatile",     "alias": "🔥 Llama 3.3 70B (Best Free)" },
+            { "name": "llama-3.1-8b-instant",         "alias": "⚡ Llama 3.1 8B (Ultra Fast)" },
+            { "name": "mixtral-8x7b-32768",            "alias": "🧠 Mixtral 8x7B" },
+            { "name": "deepseek-r1-distill-llama-70b", "alias": "🔬 DeepSeek R1 70B" },
+            { "name": "gemma2-9b-it",                  "alias": "💎 Gemma 2 9B" }
+        ],
+        "default_model": "llama-3.3-70b-versatile"
+    },
+    "openrouter": {
+        "base_url": "https://openrouter.ai/api/v1",
+        "label": "🌐 OpenRouter — Free Models",
+        "free_key_url": "https://openrouter.ai",
+        "models": [
+            { "name": "meta-llama/llama-3.3-70b-instruct:free",  "alias": "🦙 Llama 3.3 70B (Free)" },
+            { "name": "mistralai/mistral-7b-instruct:free",       "alias": "🌪 Mistral 7B (Free)" },
+            { "name": "deepseek/deepseek-r1:free",                "alias": "🔬 DeepSeek R1 (Free)" },
+            { "name": "qwen/qwen3-235b-a22b:free",                "alias": "🧠 Qwen3 235B (Free)" },
+            { "name": "google/gemini-2.0-flash-exp:free",         "alias": "✨ Gemini 2.0 Flash (Free)" }
+        ],
+        "default_model": "meta-llama/llama-3.3-70b-instruct:free"
+    },
+    "pollinations": {
+        "base_url": "",
+        "label": "🌸 Pollinations — No Key",
+        "free_key_url": "",
+        "models": [
+            { "name": "openai",  "alias": "GPT-4o (Keyless)" },
+            { "name": "openai-large", "alias": "GPT-4o Large (Keyless)" }
+        ],
+        "default_model": "openai"
+    }
+}
